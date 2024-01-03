@@ -1,0 +1,1 @@
+git+https://github.com/alliance-genome/agr_genedescriptions.git@v4.0.0#egg=genedescriptions
