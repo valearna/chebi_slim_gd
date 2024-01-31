@@ -28,7 +28,13 @@ def main():
                                ontology_cache_path='/tmp/genedescriptions/ontology.obo', config=config)
     trimming_ic = TrimmingAlgorithmIC(ontology=dm.go_ontology)
     trimming_result = trimming_ic.trim(node_ids=annotated_onto_nodes, max_num_nodes=10, min_distance_from_root=4)
-    print(trimming_result.final_terms)
+    print("Selected terms: ", *trimming_result.final_terms)
+    print()
+    for final_term in trimming_result.final_terms:
+        print(f"Initial nodes covered by {final_term}:", *[node for node in annotated_onto_nodes if final_term in
+                                                           dm.go_ontology.ancestors(
+                                                               node, relations=["subClassOf", "BFO:0000050"],
+                                                               reflexive=True)])
 
 
 if __name__ == '__main__':
